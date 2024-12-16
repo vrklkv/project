@@ -21,12 +21,12 @@ double generate_normal_random(double mean, double stddev) {
 
 
 // Функция для моделирования обменных курсов
-map<string, vector<vector<double>>> simulate_exchange_rates(const map<string, vector<double>>& historical_rates,
+map<string, vector<vector<double> > > simulate_exchange_rates(const map<string, vector<double> >& historical_rates,
                                               int days, int simulations,
                                               const map<string, double>& drifts,
                                               const map<string, double>& volatilities)
 {
-    map<string, vector<vector<double>>> simulated_rates;
+    map<string, vector<vector<double> > > simulated_rates;
     double dt = 1.0 / days;
 
     for (const auto& pair : historical_rates) {
@@ -35,7 +35,7 @@ map<string, vector<vector<double>>> simulate_exchange_rates(const map<string, ve
         double drift = drifts.at(currency);
         double volatility = volatilities.at(currency);
 
-        vector<vector<double>> daily_returns(days, vector<double>(simulations));
+        vector<vector<double> > daily_returns(days, vector<double>(simulations));
         for (int i = 0; i < days; i++)
         {
           for (int j = 0; j < simulations; j++) {
@@ -43,7 +43,7 @@ map<string, vector<vector<double>>> simulate_exchange_rates(const map<string, ve
           }
         }
        
-        vector<vector<double>> simulation(days, vector<double>(simulations));
+        vector<vector<double> > simulation(days, vector<double>(simulations));
          for (int j = 0; j < simulations; ++j)
            simulation[0][j] = rates.back() * daily_returns[0][j];
 
@@ -59,7 +59,7 @@ map<string, vector<vector<double>>> simulate_exchange_rates(const map<string, ve
 
 
 // Функция для расчета стоимости портфеля
-vector<double> portfolio_value(const map<string, vector<vector<double>>>& simulated_rates, const map<string, double>& portfolio) {
+vector<double> portfolio_value(const map<string, vector<vector<double> > >& simulated_rates, const map<string, double>& portfolio) {
     
     // Получаем количество симуляций
     int simulations = simulated_rates.begin()->second[0].size();
