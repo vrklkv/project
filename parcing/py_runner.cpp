@@ -12,9 +12,3 @@ int run_python_script(const std::string& script_path) {
     }
     return result; //возвращает код завершения процесса
 }
-
-int main(){
-  std::string py_script_path = "..\\parcer.py"; 
-  int result = run_python_script(py_script_path);
-  return result;
-}
