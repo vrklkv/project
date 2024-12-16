@@ -1,5 +1,3 @@
-from IPython.display import clear_output
-clear_output()
 import pandas as pd
 import numpy as np
 import yfinance as yf 
@@ -18,6 +16,6 @@ result = pd.concat(frames, axis=1)
 current_file = os.path.realpath(__file__)
 current_directory = os.path.dirname(current_file)
 #excel_writer=str(current_directory)+"\data.xlsx"
-where=str(current_directory)+"\data.txt"
+where=str(current_directory)+"/data.txt"
 #result.to_excel(excel_writer, sheet_name='Sheet1', index=True)
 np.savetxt(where, result.values, fmt='%f')
